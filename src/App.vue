@@ -1,15 +1,21 @@
 <template>
-  <div id="app">
-
-  </div>
+    <div id="app" class="h-full w-full">
+        <vue-form :data="formData"></vue-form>
+    </div>
 </template>
 
 <script>
-export default {
+    import VueForm from '@/components/VueForm';
+    import data from '@/data/demo';
 
-}
+    export default {
+        data() {
+            return {
+                formData: data
+            }
+        },
+        components: {
+            VueForm
+        }
+    }
 </script>
-
-<style lang="scss">
-
-</style>
