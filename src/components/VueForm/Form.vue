@@ -1,5 +1,5 @@
 <template>
-    <div class="h-full flex flex-col m-auto md:w-2/5 justify-center">
+    <div class="vue-form__form h-full flex flex-col m-auto md:w-2/5 justify-center">
         <form-question
                 :number="currentQuestionIndex + 1"
                 :question="question"
@@ -10,8 +10,8 @@
 </template>
 
 <script>
-    import FormQuestion from '@/components/VueForm/FormQuestion';
-    import FormAnswer from '@/components/VueForm/FormAnswer';
+    import FormQuestion from './FormQuestion';
+    import FormAnswer from './FormAnswer';
 
     export default {
         props: {
@@ -34,3 +34,19 @@
         }
     }
 </script>
+
+<style lang="scss" scoped>
+    .vue-form__form {
+        height: 100%;
+        
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        
+        margin: auto;
+        
+        @media (min-width: 768px) {
+            width: calc( (100% / 5) * 2 )
+        }
+    }
+</style>

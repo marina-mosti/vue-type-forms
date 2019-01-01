@@ -1,5 +1,5 @@
 <template>
-    <div id="app" class="h-full w-full">
+    <div id="app">
         <vue-form :data="formData"></vue-form>
     </div>
 </template>
@@ -19,3 +19,13 @@
         }
     }
 </script>
+
+<style lang="scss">
+    html, body {
+        height: 100%;
+    }
+
+    #app {
+        height: 100%;
+    }
+</style>

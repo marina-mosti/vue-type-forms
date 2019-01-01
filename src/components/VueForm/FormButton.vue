@@ -1,21 +1,21 @@
 <template>
-    <button @click="$emit('click')" class="rounded text-white p-2" :class="[backgroundColor]">
+    <button @click="$emit('click')" class="vue-form__button">
         <slot></slot>
     </button>
 </template>
 
 <script>
     export default {
-        props: {
-            color: {
-                type: String,
-                default: 'blue'
-            }
-        },
-        computed: {
-            backgroundColor() {
-                return 'bg-' + this.color;
-            }
-        }
     }
 </script>
+
+<style lang="scss" scoped>
+    .vue-form__button {
+        border-radius: .25rem;
+        color: white;
+        background-color: #3490DC;
+        padding: .25rem;
+        font-size: 1.25rem;
+        cursor: pointer;
+    }
+</style>

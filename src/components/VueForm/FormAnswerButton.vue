@@ -1,21 +1,28 @@
 <template>
-    <button :class="['border-' + color, 'bg-' + background, 'text-' + color]"
-            class="rounded border p-2 w-1/6 text-left font-bold">
+    <button class="vue-form__answer-button">
         <slot></slot>
     </button>
 </template>
 
 <script>
     export default {
-        props: {
-            color: {
-                type: String,
-                default: 'blue'
-            },
-            background: {
-                type: String,
-                default: 'blue-lightest'
-            }
-        }
     }
 </script>
+
+<style lang="scss" scoped>
+    .vue-form__answer-button {
+        border-radius: .25rem;
+        border: 1px solid #3490DC;
+        margin-bottom: .25rem;
+        padding: .25rem;
+
+        width: calc(100% / 6);
+        text-align: left;
+        font-weight: bold;
+
+        background-color: #EFF8FF;
+        color: #3490DC;
+
+        cursor: pointer;
+    }
+</style>

@@ -1,5 +1,5 @@
 <template>
-    <div class="h-full w-full">
+    <div class="vue-form">
         <splash-screen v-if="state === 'splash'"
                 @continue="state = 'form'"
                 :call-to-action="data.callToAction"
@@ -12,8 +12,8 @@
 </template>
 
 <script>
-    import SplashScreen from '@/components/VueForm/SplashScreen';
-    import vForm from '@/components/VueForm/Form';
+    import SplashScreen from './VueForm/SplashScreen';
+    import vForm from './VueForm/Form';
 
     export default {
         props: {
@@ -31,11 +31,14 @@
     }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+    @import url('https://fonts.googleapis.com/css?family=Karla:400,700');
 
-    html, body {
-        @apply h-full;
+    * {
         font-family: 'Karla', sans-serif;
     }
 
+    .vue-form {
+        height: 100%;
+    }
 </style>

@@ -1,7 +1,7 @@
 <template>
-    <div class="flex flex-col items-start">
+    <div class="vue-form__answer">
         <template v-if="question.type === 'single'">
-            <answer-button class="mb-1" v-for="answer in question.answers" :key="answer"
+            <answer-button v-for="answer in question.answers" :key="answer.answer"
                @click="answer(answer)"
             >
                 {{ answer.answer }}
@@ -30,3 +30,11 @@
         }
     }
 </script>
+
+<style lang="scss" scoped>
+    .vue-form__answer {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+    }
+</style>

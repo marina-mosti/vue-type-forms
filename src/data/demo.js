@@ -1,6 +1,7 @@
 export default {
     callToAction: 'Hello, foxy person!',
     launchButton: 'Let\'s go!',
+    formId: 'registration',
     questions: [
         {
             question: 'Do you identify as a woman?',
