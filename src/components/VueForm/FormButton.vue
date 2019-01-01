@@ -17,5 +17,9 @@
         padding: .25rem;
         font-size: 1.25rem;
         cursor: pointer;
+
+        &:focus {
+            outline: none;
+        }
     }
 </style>

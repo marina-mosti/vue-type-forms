@@ -34,8 +34,9 @@
 <style lang="scss" scoped>
     @import url('https://fonts.googleapis.com/css?family=Karla:400,700');
 
-    * {
+    *, html {
         font-family: 'Karla', sans-serif;
+        box-sizing: border-box;
     }
 
     .vue-form {
