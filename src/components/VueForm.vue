@@ -6,15 +6,14 @@
                 :button="data.launchButton">
         </splash-screen>
 
-        <div v-if="state === 'form'">
-            <form :data="data"></form>
-        </div>
+        <v-form v-if="state === 'form'"
+                :questions="data.questions"></v-form>
     </div>
 </template>
 
 <script>
     import SplashScreen from '@/components/VueForm/SplashScreen';
-    import Form from '@/components/VueForm/Form';
+    import vForm from '@/components/VueForm/Form';
 
     export default {
         props: {
@@ -27,7 +26,7 @@
         },
         components: {
             SplashScreen,
-            Form
+            vForm
         }
     }
 </script>
