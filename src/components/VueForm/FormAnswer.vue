@@ -9,7 +9,7 @@
             </answer-button>
         </template>
 
-        <form-button v-if="currentAnswer" class="ok-button">OK ✔</form-button>
+        <form-button @click="answer" v-if="showOKButton" class="ok-button">OK ✔</form-button>
     </div>
 </template>
 
@@ -30,17 +30,28 @@
             AnswerButton,
             FormButton
         },
+        computed: {
+            showOKButton() {
+                return (
+                    this.currentAnswer &&
+                    this.question.answers &&
+                    this.question.answers.length > 0
+                );
+            }
+        },
         methods: {
-            answer(answer) {
+            answer() {
                 this.$emit('answer', {
                     question: this.question,
-                    answer: answer
+                    answer: this.currentAnswer
                 });
+
+                this.currentAnswer = null;
             },
 
             selectAnswer(answer) {
                 this.currentAnswer = answer;
-            }
+            },
         }
     }
 </script>

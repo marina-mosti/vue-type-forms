@@ -1,5 +1,5 @@
 <template>
-    <button @click="$emit('click')" class="vue-form__answer-button" :class="{ 'selected': selected }">
+    <button @click="$emit('click')" class="vue-form__answer-button" :class="{ 'selected': isSelected }">
         <slot></slot>
     </button>
 </template>
@@ -10,6 +10,11 @@
             selected: {
                 type: Boolean,
                 default: false
+            }
+        },
+        computed: {
+            isSelected() {
+                return this.selected;
             }
         }
     }
@@ -24,9 +29,8 @@
 
         font-size: 1.2rem;
 
-        width: calc(100% / 6);
+        width: calc(100% / 4);
         text-align: left;
-        font-weight: bold;
 
         background-color: #EFF8FF;
         color: #3490DC;
@@ -39,6 +43,7 @@
 
         &:focus {
             outline: none;
+            font-weight: bold;
         }
     }
 </style>

@@ -5,7 +5,7 @@
                 :question="question"
         ></form-question>
 
-        <form-answer :question="question"></form-answer>
+        <form-answer @answer="registerAnswer" :question="question"></form-answer>
     </div>
 </template>
 
@@ -15,11 +15,12 @@
 
     export default {
         props: {
-            questions: Array
+            questions: Array,
+            answers: []
         },
         data() {
             return {
-                answers: [],
+                userAnswers: [],
                 currentQuestionIndex: 0
             }
         },
@@ -31,6 +32,27 @@
         components: {
             FormQuestion,
             FormAnswer
+        },
+        methods: {
+            registerAnswer(answerData) {
+                const question = answerData.question;
+                const answer = answerData.answer;
+
+                this.userAnswers.push({
+                    question: question.question,
+                    answer: answer.answer
+                });
+
+                if (answer.action === 'continue') {
+                    this.currentQuestionIndex++;
+                    return;
+                }
+
+                if (answer.action === 'skip') {
+                    const questionIndex = this.questions.findIndex(q => q.id === answer.skipTo);
+                    this.currentQuestionIndex = questionIndex;
+                }
+            }
         }
     }
 </script>
