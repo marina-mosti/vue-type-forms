@@ -14,7 +14,7 @@
         border-radius: .25rem;
         color: white;
         background-color: #3490DC;
-        padding: .25rem;
+        padding: .5rem;
         font-size: 1.25rem;
         cursor: pointer;
 
