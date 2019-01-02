@@ -1,53 +1,52 @@
 <template>
-    <div class="vue-form">
-        <splash-screen v-if="state === 'splash'"
-                @continue="state = 'form'"
-                :call-to-action="data.callToAction"
-                :button="data.launchButton">
-        </splash-screen>
+  <div class="vue-form">
+    <splash-screen
+      v-if="state === 'splash'"
+      @continue="state = 'form'"
+      :call-to-action="data.callToAction"
+      :button="data.launchButton"
+    ></splash-screen>
 
-        <v-form v-if="state === 'form'"
-                :questions="data.questions"
-                @complete="formComplete"
-        ></v-form>
-    </div>
+    <v-form v-if="state === 'form'" :questions="data.questions" @complete="formComplete"></v-form>
+  </div>
 </template>
 
 <script>
-    import SplashScreen from './VueForm/SplashScreen';
-    import vForm from './VueForm/Form';
+import SplashScreen from "./VueForm/SplashScreen";
+import vForm from "./VueForm/Form";
 
-    export default {
-        props: {
-            data: Object
-        },
-        data() {
-            return {
-                state: 'splash'
-            }
-        },
-        components: {
-            SplashScreen,
-            vForm
-        },
+export default {
+  props: {
+    data: Object
+  },
+  data() {
+    return {
+      state: "splash"
+    };
+  },
+  components: {
+    SplashScreen,
+    vForm
+  },
 
-        methods: {
-            formComplete(data) {
-                this.$emit('complete', data);
-            }
-        }
+  methods: {
+    formComplete(data) {
+      this.$emit("complete", data);
     }
+  }
+};
 </script>
 
 <style lang="scss" scoped>
-    @import url('https://fonts.googleapis.com/css?family=Karla:400,700');
+@import url("https://fonts.googleapis.com/css?family=Karla:400,700");
 
-    *, html {
-        font-family: 'Karla', sans-serif;
-        box-sizing: border-box;
-    }
+*,
+html {
+  font-family: "Karla", sans-serif;
+  box-sizing: border-box;
+}
 
-    .vue-form {
-        height: 100%;
-    }
+.vue-form {
+  height: 100%;
+}
 </style>

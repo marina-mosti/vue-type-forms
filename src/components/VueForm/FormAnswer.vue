@@ -1,101 +1,102 @@
 <template>
-    <div class="vue-form__answer">
-        <!-- Single selection buttons -->
-        <template v-if="question.type === 'single'">
-            <answer-button v-for="answer in question.answers" :key="answer.answer"
-               :selected="currentAnswer && answer.answer === currentAnswer.answer"
-               @click="selectAnswer(answer)"
-            >
-                {{ answer.answer }}
-            </answer-button>
-        </template>
+  <div class="vue-form__answer">
+    <!-- Single selection buttons -->
+    <answer-button
+      v-for="answer in question.answers"
+      :key="answer.answer"
+      :selected="currentAnswer && answer.answer === currentAnswer.answer"
+      @click="selectAnswer(answer)"
+    >{{ answer.answer }}</answer-button>
 
-        <!-- Open single line text -->
-        <template v-if="question.type === 'text'">
-            <answer-input type="text" @input="selectAnswer" value=""></answer-input>
-        </template>
+    <!-- Open single line text -->
+    <answer-input
+      v-if="question.type === 'text'"
+      type="text"
+      @input="selectAnswer"
+      :value="currentAnswer"
+    ></answer-input>
+    <answer-input
+      v-if="question.type === 'email'"
+      type="email"
+      @input="selectAnswer"
+      :value="currentAnswer"
+    ></answer-input>
 
-        <template v-if="question.type === 'email'">
-            <answer-input type="email" @input="selectAnswer" value=""></answer-input>
-        </template>
-
-        <form-button @click="answer" v-if="showOKButton" class="answer-button">OK ✔</form-button>
-
-        <form-button @click="$emit('submit')" v-if="showSubmitButton" class="answer-button">Submit</form-button>
-    </div>
+    <form-button @click="answer" v-if="showOKButton" class="answer-button">OK ✔</form-button>
+    <form-button @click="$emit('submit')" v-if="showSubmitButton" class="answer-button">Submit</form-button>
+  </div>
 </template>
 
 <script>
-    import AnswerButton from './FormAnswerButton';
-    import AnswerInput from './FormAnswerInput';
-    import FormButton from './FormButton';
+import AnswerButton from "./FormAnswerButton";
+import AnswerInput from "./FormAnswerInput";
+import FormButton from "./FormButton";
 
-    export default {
-        data() {
-            return {
-                currentAnswer: null // Answer obj
-            }
-        },
-        props: {
-            question: Object
-        },
-        components: {
-            AnswerButton,
-            AnswerInput,
-            FormButton
-        },
-        computed: {
-            showOKButton() {
-                if (!this.currentAnswer) return false;
+export default {
+  data() {
+    return {
+      currentAnswer: null // Answer obj
+    };
+  },
+  props: {
+    question: Object
+  },
+  components: {
+    AnswerButton,
+    AnswerInput,
+    FormButton
+  },
+  computed: {
+    showOKButton() {
+      if (!this.currentAnswer) return false;
 
-                if (this.question.type === 'single') {
-                    return (
-                        this.question.answers &&
-                        this.question.answers.length > 0
-                    );
-                }
+      if (this.question.type === "single") {
+        return this.question.answers && this.question.answers.length > 0;
+      }
 
-                if (this.question.type === 'text' && this.question.minLength) {
-                    return this.currentAnswer.length >= this.question.minLength;
-                }
+      if (this.question.type === "text" && this.question.minLength) {
+        return this.currentAnswer.length >= this.question.minLength;
+      }
 
-                if (this.question.type === 'email') {
-                    // eslint-disable-next-line
-                    return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test( this.currentAnswer );
-                }
+      if (this.question.type === "email") {
+        // eslint-disable-next-line
+        return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(
+          this.currentAnswer
+        );
+      }
 
-                return true;
-            },
+      return true;
+    },
 
-            showSubmitButton() {
-                return this.question.type === 'submit';
-            }
-        },
-        methods: {
-            answer() {
-                this.$emit('answer', {
-                    question: this.question,
-                    answer: this.currentAnswer
-                });
-
-                this.currentAnswer = null;
-            },
-
-            selectAnswer(answer) {
-                this.currentAnswer = answer;
-            },
-        }
+    showSubmitButton() {
+      return this.question.type === "submit";
     }
+  },
+  methods: {
+    answer() {
+      this.$emit("answer", {
+        question: this.question,
+        answer: this.currentAnswer
+      });
+
+      this.currentAnswer = null;
+    },
+
+    selectAnswer(answer) {
+      this.currentAnswer = answer;
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped>
-    .vue-form__answer {
-        display: flex;
-        flex-direction: column;
-        align-items: start;
+.vue-form__answer {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
 
-        .answer-button {
-            margin-top: 2rem;
-        }
-    }
+  .answer-button {
+    margin-top: 2rem;
+  }
+}
 </style>
