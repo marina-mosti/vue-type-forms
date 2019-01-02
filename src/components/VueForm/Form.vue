@@ -1,8 +1,9 @@
 <template>
-    <div class="vue-form__form h-full flex flex-col m-auto md:w-2/5 justify-center">
+    <div class="vue-form__form">
         <form-question
                 :number="currentQuestionIndex + 1"
                 :question="question"
+                :show-number="question.type !== 'submit'"
         ></form-question>
 
         <form-answer @answer="registerAnswer" :question="question"></form-answer>
@@ -38,17 +39,19 @@
                 const question = answerData.question;
                 const answer = answerData.answer;
 
+                const action = answer.action || question.action;
+
                 this.userAnswers.push({
                     question: question.question,
-                    answer: answer.answer
+                    answer: answer.answer || answer
                 });
 
-                if (answer.action === 'continue') {
+                if (action === 'continue') {
                     this.currentQuestionIndex++;
                     return;
                 }
 
-                if (answer.action === 'skip') {
+                if (action === 'skip') {
                     const questionIndex = this.questions.findIndex(q => q.id === answer.skipTo);
                     this.currentQuestionIndex = questionIndex;
                 }

@@ -39,6 +39,24 @@ export default {
             ]
         },
         {
+            question: 'What\'s your name?',
+            type: 'text',
+            action: 'continue',
+            minLength: 3
+        },
+        {
+            question: 'What\'s your last name?',
+            type: 'text',
+            action: 'continue',
+            minLength: 3
+        },
+        {
+            question: 'What\'s your email?',
+            small: 'We promise not to spam you',
+            type: 'email',
+            action: 'continue'
+        },
+        {
             id: 'thank-you',
             question: 'Thank you!',
             type: 'submit'
