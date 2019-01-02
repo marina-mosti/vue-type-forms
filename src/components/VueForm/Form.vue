@@ -6,7 +6,7 @@
                 :show-number="question.type !== 'submit'"
         ></form-question>
 
-        <form-answer @answer="registerAnswer" :question="question"></form-answer>
+        <form-answer @answer="registerAnswer" :question="question" @submit="submit"></form-answer>
     </div>
 </template>
 
@@ -35,6 +35,19 @@
             FormAnswer
         },
         methods: {
+            submit() {
+                this.$emit('complete', this.userAnswers);
+            },
+
+            changeQuestion(newQuestionIndex) {
+                if (!this.questions[newQuestionIndex]) {
+                    this.submit();
+                    return;
+                }
+
+                this.currentQuestionIndex = newQuestionIndex;
+            },
+
             registerAnswer(answerData) {
                 const question = answerData.question;
                 const answer = answerData.answer;
@@ -47,13 +60,13 @@
                 });
 
                 if (action === 'continue') {
-                    this.currentQuestionIndex++;
+                    this.changeQuestion(this.currentQuestionIndex + 1);
                     return;
                 }
 
                 if (action === 'skip') {
                     const questionIndex = this.questions.findIndex(q => q.id === answer.skipTo);
-                    this.currentQuestionIndex = questionIndex;
+                    this.changeQuestion(questionIndex);
                 }
             }
         }

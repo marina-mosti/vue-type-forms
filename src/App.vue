@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <vue-form :data="formData"></vue-form>
+        <vue-form :data="formData" @complete="complete"></vue-form>
     </div>
 </template>
 
@@ -16,6 +16,12 @@
         },
         components: {
             VueForm
+        },
+        methods: {
+            complete(data) {
+                // Send to database here
+                console.log('Form complete', data);
+            }
         }
     }
 </script>

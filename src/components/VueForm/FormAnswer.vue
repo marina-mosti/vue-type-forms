@@ -19,7 +19,9 @@
             <answer-input type="email" @input="selectAnswer" value=""></answer-input>
         </template>
 
-        <form-button @click="answer" v-if="showOKButton" class="ok-button">OK ✔</form-button>
+        <form-button @click="answer" v-if="showOKButton" class="answer-button">OK ✔</form-button>
+
+        <form-button @click="$emit('submit')" v-if="showSubmitButton" class="answer-button">Submit</form-button>
     </div>
 </template>
 
@@ -63,6 +65,10 @@
                 }
 
                 return true;
+            },
+
+            showSubmitButton() {
+                return this.question.type === 'submit';
             }
         },
         methods: {
@@ -88,7 +94,7 @@
         flex-direction: column;
         align-items: start;
 
-        .ok-button {
+        .answer-button {
             margin-top: 2rem;
         }
     }

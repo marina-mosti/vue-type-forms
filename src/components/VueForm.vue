@@ -7,7 +7,9 @@
         </splash-screen>
 
         <v-form v-if="state === 'form'"
-                :questions="data.questions"></v-form>
+                :questions="data.questions"
+                @complete="formComplete"
+        ></v-form>
     </div>
 </template>
 
@@ -27,6 +29,12 @@
         components: {
             SplashScreen,
             vForm
+        },
+
+        methods: {
+            formComplete(data) {
+                this.$emit('complete', data);
+            }
         }
     }
 </script>
