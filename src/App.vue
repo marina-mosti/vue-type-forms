@@ -1,37 +1,38 @@
 <template>
-    <div id="app">
-        <vue-form :data="formData" @complete="complete"></vue-form>
-    </div>
+  <div id="app">
+    <vue-form :data="formData" @complete="complete"></vue-form>
+  </div>
 </template>
 
 <script>
-    import VueForm from '@/components/VueForm';
-    import data from '@/data/demo';
+import VueForm from "@/components/VueForm";
+import data from "@/data/demo";
 
-    export default {
-        data() {
-            return {
-                formData: data
-            }
-        },
-        components: {
-            VueForm
-        },
-        methods: {
-            complete(data) {
-                // Send to database here
-                console.log('Form complete', data);
-            }
-        }
+export default {
+  data() {
+    return {
+      formData: data
+    };
+  },
+  components: {
+    VueForm
+  },
+  methods: {
+    complete(data) {
+      // Send to database here
+      console.log("Form complete", data);
     }
+  }
+};
 </script>
 
 <style lang="scss">
-    html, body {
-        height: 100%;
-    }
+html,
+body {
+  height: 100%;
+}
 
-    #app {
-        height: 100%;
-    }
+#app {
+  height: 100%;
+}
 </style>
