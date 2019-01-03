@@ -4,6 +4,7 @@
     <answer-button
       v-for="answer in question.answers"
       :key="answer.answer"
+      :keyboard="answer.key || null"
       :selected="currentAnswer && answer.answer === currentAnswer.answer"
       @click="selectAnswer(answer)"
     >{{ answer.answer }}</answer-button>

@@ -10,11 +10,13 @@ export default {
         {
           answer: 'Yes',
           action: 'continue',
+          key: 'Y'
         },
         {
           answer: 'No',
           action: 'skip',
           skipTo: 'thank-you',
+          key: 'N'
         },
       ],
     },
