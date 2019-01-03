@@ -24,7 +24,7 @@
     ></answer-input>
 
     <form-button @click="answer" v-if="showOKButton" class="answer-button">OK ✔</form-button>
-    <form-button @click="$emit('submit')" v-if="showSubmitButton" class="answer-button">Submit</form-button>
+    <form-button @click="submit" v-if="showSubmitButton" class="answer-button">Submit</form-button>
   </div>
 </template>
 
@@ -83,9 +83,32 @@ export default {
       this.currentAnswer = null;
     },
 
+    submit() {
+      this.$emit('submit');
+    },
+
     selectAnswer(answer) {
       this.currentAnswer = answer;
+    },
+
+    enterListener(e) {
+      // Enter key === 13
+      if (e.which !== 13) return;
+      
+      if (this.showOKButton) {
+        this.answer();
+      }
+
+      if (this.showSubmitButton) {
+        this.submit();
+      }
     }
+  },
+  created() {
+    window.addEventListener('keyup', this.enterListener);
+  },
+  beforeDestroy() {
+    window.removeEventListener('keyup', this.enterListener);
   }
 };
 </script>

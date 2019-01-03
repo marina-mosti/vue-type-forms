@@ -27,10 +27,12 @@ export default {
         {
           answer: 'Yes',
           action: 'continue',
+          key: 'Y'
         },
         {
           answer: 'No',
           action: 'skip',
+          key: 'N',
           skipTo: 'thank-you',
         },
         {
