@@ -10,6 +10,9 @@ export default {};
 
 <style lang="scss" scoped>
 .vue-form__button {
+  display: flex;
+  align-items: center;
+
   border-radius: 0.25rem;
   color: white;
   background-color: #3490dc;
@@ -19,6 +22,12 @@ export default {};
 
   &:focus {
     outline: none;
+  }
+
+  small {
+    display: inline-block;
+    padding-left: 5px;
+    font-size: .7rem;
   }
 }
 </style>

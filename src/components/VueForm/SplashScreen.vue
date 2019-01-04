@@ -9,7 +9,7 @@
     </div>
 
     <div>
-      <form-button @click="$emit('continue')">{{ button }}</form-button>
+      <form-button @click="emitContinue">{{ button }} <small>[Enter]</small></form-button>
     </div>
   </div>
 </template>
@@ -23,6 +23,17 @@ export default {
   },
   components: {
     FormButton
+  },
+  methods: {
+    emitContinue() {
+      this.$emit('continue');
+    }
+  },
+  created() {
+    window.addEventListener('keyup', this.emitContinue);
+  },
+  beforeDestroy() {
+    window.removeEventListener('keyup', this.emitContinue);
   }
 };
 </script>
