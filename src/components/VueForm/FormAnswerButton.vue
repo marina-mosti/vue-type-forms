@@ -60,7 +60,7 @@ export default {
 
   font-size: 1.2rem;
 
-  width: calc(100% / 4);
+  width: 100%;
   text-align: left;
 
   background-color: #eff8ff;

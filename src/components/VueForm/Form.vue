@@ -59,7 +59,7 @@ export default {
         answer: answer.answer || answer
       });
 
-      if (action === "continue") {
+      if (!action || action === "continue") {
         this.changeQuestion(this.currentQuestionIndex + 1);
         return;
       }

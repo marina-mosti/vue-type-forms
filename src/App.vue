@@ -20,7 +20,7 @@ export default {
   methods: {
     complete(data) {
       // Send to database here
-      console.log("Form complete", data);
+      console.log("Form complete", data.map(d => d.question + ': ' + d.answer));
     }
   }
 };
