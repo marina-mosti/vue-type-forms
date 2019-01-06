@@ -1,4 +1,6 @@
-# vv-form
+# Vue TypeForms
+
+A simple TypeForms clone made with VueJS
 
 ## Project setup
 ```
